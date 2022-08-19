@@ -9,10 +9,10 @@ import javax.swing.Timer;
 
 public class Graphics extends JPanel implements ActionListener {
   private Timer t = new Timer(100, this);
-  public String state;
   private Snake s;
   private Food f;
   private Game game;
+  public String state;
 
   public Graphics(Game g) {
     t.start();
