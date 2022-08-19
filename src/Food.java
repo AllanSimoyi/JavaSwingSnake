@@ -12,10 +12,8 @@ public class Food {
     boolean onSnake = true;
     while (onSnake) {
       onSnake = false;
-
       x = (int) (Math.random() * Game.width - 1);
       y = (int) (Math.random() * Game.height - 1);
-
       for (Rectangle r : snake.getBody()) {
         if (r.x == x && r.y == y) {
           onSnake = true;
