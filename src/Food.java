@@ -4,8 +4,12 @@ import java.util.ArrayList;
 public class Food {
   private int x;
   private int y;
+  private int gameWidth;
+  private int gameHeight;
 
-  public Food(ArrayList<Rectangle> currentSnakePosition) {
+  public Food(ArrayList<Rectangle> currentSnakePosition, int gameWidth, int gameHeight) {
+    this.gameWidth = gameWidth;
+    this.gameHeight = gameHeight;
     this.randomSpawn(currentSnakePosition);
   }
 
@@ -13,8 +17,8 @@ public class Food {
     boolean onSnake = true;
     while (onSnake) {
       onSnake = false;
-      x = (int) (Math.random() * Game.width - 1);
-      y = (int) (Math.random() * Game.height - 1);
+      x = (int) (Math.random() * gameWidth - 1);
+      y = (int) (Math.random() * gameHeight - 1);
       for (Rectangle r : currentSnakePosition) {
         if (r.x == x && r.y == y) {
           onSnake = true;

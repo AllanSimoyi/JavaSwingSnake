@@ -3,21 +3,20 @@ import java.util.ArrayList;
 
 public class Snake {
   private ArrayList<Rectangle> body;
-  private int width = Game.width;
-  private int height = Game.height;
-  private int dimension = Game.dimension;
+  private int gameDimension;
   private String move; // NOTHING, UP, DOWN, LEFT, RIGHT
 
-  public Snake() {
+  public Snake(int gameWidth, int gameHeight, int gameDimension) {
+    this.gameDimension = gameDimension;
     body = new ArrayList<>();
-    Rectangle newRectangle = new Rectangle(Game.dimension, Game.dimension);
-    newRectangle.setLocation(Game.width / 2 * Game.dimension, Game.height / 2 * Game.dimension);
+    Rectangle newRectangle = new Rectangle(gameDimension, gameDimension);
+    newRectangle.setLocation(gameWidth / 2 * gameDimension, gameHeight / 2 * gameDimension);
     body.add(newRectangle);
-    newRectangle = new Rectangle(dimension, dimension);
-    newRectangle.setLocation((width / 2 - 1) * dimension, (height / 2) * dimension);
+    newRectangle = new Rectangle(gameDimension, gameDimension);
+    newRectangle.setLocation((gameWidth / 2 - 1) * gameDimension, (gameHeight / 2) * gameDimension);
     body.add(newRectangle);
-    newRectangle = new Rectangle(dimension, dimension);
-    newRectangle.setLocation((width / 2 - 2) * dimension, (height / 2) * dimension);
+    newRectangle = new Rectangle(gameDimension, gameDimension);
+    newRectangle.setLocation((gameWidth / 2 - 2) * gameDimension, (gameHeight / 2) * gameDimension);
     body.add(newRectangle);
     move = "NOTHING";
   }
@@ -25,15 +24,15 @@ public class Snake {
   public void move() {
     if (move != "NOTHING") {
       Rectangle firstRectangle = body.get(0);
-      Rectangle newRectangle = new Rectangle(Game.dimension, Game.dimension);
+      Rectangle newRectangle = new Rectangle(gameDimension, gameDimension);
       if (move == "UP") {
-        newRectangle.setLocation(firstRectangle.x, firstRectangle.y - Game.dimension);
+        newRectangle.setLocation(firstRectangle.x, firstRectangle.y - gameDimension);
       } else if (move == "DOWN") {
-        newRectangle.setLocation(firstRectangle.x, firstRectangle.y + Game.dimension);
+        newRectangle.setLocation(firstRectangle.x, firstRectangle.y + gameDimension);
       } else if (move == "LEFT") {
-        newRectangle.setLocation(firstRectangle.x - Game.dimension, firstRectangle.y);
+        newRectangle.setLocation(firstRectangle.x - gameDimension, firstRectangle.y);
       } else {
-        newRectangle.setLocation(firstRectangle.x + Game.dimension, firstRectangle.y);
+        newRectangle.setLocation(firstRectangle.x + gameDimension, firstRectangle.y);
       }
       body.add(0, newRectangle);
       body.remove(body.size() - 1);
@@ -42,15 +41,15 @@ public class Snake {
 
   public void grow() {
     Rectangle firstRectangle = body.get(0);
-    Rectangle newRectangle = new Rectangle(Game.dimension, Game.dimension);
+    Rectangle newRectangle = new Rectangle(gameDimension, gameDimension);
     if (move == "UP") {
-      newRectangle.setLocation(firstRectangle.x, firstRectangle.y - Game.dimension);
+      newRectangle.setLocation(firstRectangle.x, firstRectangle.y - gameDimension);
     } else if (move == "DOWN") {
-      newRectangle.setLocation(firstRectangle.x, firstRectangle.y + Game.dimension);
+      newRectangle.setLocation(firstRectangle.x, firstRectangle.y + gameDimension);
     } else if (move == "LEFT") {
-      newRectangle.setLocation(firstRectangle.x - Game.dimension, firstRectangle.y);
+      newRectangle.setLocation(firstRectangle.x - gameDimension, firstRectangle.y);
     } else {
-      newRectangle.setLocation(firstRectangle.x + Game.dimension, firstRectangle.y);
+      newRectangle.setLocation(firstRectangle.x + gameDimension, firstRectangle.y);
     }
     body.add(0, newRectangle);
   }

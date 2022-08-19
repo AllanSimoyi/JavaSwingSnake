@@ -8,15 +8,14 @@ public class Game implements KeyListener {
   private Food food;
   private Graphics graphics;
   private JFrame window;
-
-  public static final int width = 30;
-  public static final int height = 30;
-  public static final int dimension = 20;
+  private final int width = 30;
+  private final int height = 30;
+  private final int dimension = 20;
 
   public Game() {
     window = new JFrame();
-    snake = new Snake();
-    food = new Food(snake.getBody());
+    snake = new Snake(width, height, dimension);
+    food = new Food(snake.getBody(), width, height);
     graphics = new Graphics(this);
     window.add(graphics);
     window.setTitle("Snake");
@@ -94,6 +93,18 @@ public class Game implements KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
+  }
+
+  public int getWidth() {
+    return width;
+  }
+
+  public int getHeight() {
+    return height;
+  }
+
+  public int getDimension() {
+    return dimension;
   }
 
   public Snake getSnake() {
