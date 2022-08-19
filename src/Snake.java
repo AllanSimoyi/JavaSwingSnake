@@ -23,16 +23,16 @@ public class Snake {
 
   public void move() {
     if (move != "NOTHING") {
-      Rectangle firstRectangle = body.get(0);
+      Rectangle firstBodyRectangle = body.get(0);
       Rectangle newRectangle = new Rectangle(gameDimension, gameDimension);
       if (move == "UP") {
-        newRectangle.setLocation(firstRectangle.x, firstRectangle.y - gameDimension);
+        newRectangle.setLocation(firstBodyRectangle.x, firstBodyRectangle.y - gameDimension);
       } else if (move == "DOWN") {
-        newRectangle.setLocation(firstRectangle.x, firstRectangle.y + gameDimension);
+        newRectangle.setLocation(firstBodyRectangle.x, firstBodyRectangle.y + gameDimension);
       } else if (move == "LEFT") {
-        newRectangle.setLocation(firstRectangle.x - gameDimension, firstRectangle.y);
+        newRectangle.setLocation(firstBodyRectangle.x - gameDimension, firstBodyRectangle.y);
       } else {
-        newRectangle.setLocation(firstRectangle.x + gameDimension, firstRectangle.y);
+        newRectangle.setLocation(firstBodyRectangle.x + gameDimension, firstBodyRectangle.y);
       }
       body.add(0, newRectangle);
       body.remove(body.size() - 1);
@@ -40,16 +40,16 @@ public class Snake {
   }
 
   public void grow() {
-    Rectangle firstRectangle = body.get(0);
+    Rectangle firstBodyRectangle = body.get(0);
     Rectangle newRectangle = new Rectangle(gameDimension, gameDimension);
     if (move == "UP") {
-      newRectangle.setLocation(firstRectangle.x, firstRectangle.y - gameDimension);
+      newRectangle.setLocation(firstBodyRectangle.x, firstBodyRectangle.y - gameDimension);
     } else if (move == "DOWN") {
-      newRectangle.setLocation(firstRectangle.x, firstRectangle.y + gameDimension);
+      newRectangle.setLocation(firstBodyRectangle.x, firstBodyRectangle.y + gameDimension);
     } else if (move == "LEFT") {
-      newRectangle.setLocation(firstRectangle.x - gameDimension, firstRectangle.y);
+      newRectangle.setLocation(firstBodyRectangle.x - gameDimension, firstBodyRectangle.y);
     } else {
-      newRectangle.setLocation(firstRectangle.x + gameDimension, firstRectangle.y);
+      newRectangle.setLocation(firstBodyRectangle.x + gameDimension, firstBodyRectangle.y);
     }
     body.add(0, newRectangle);
   }
