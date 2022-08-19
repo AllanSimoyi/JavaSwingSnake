@@ -4,11 +4,11 @@ public class Food {
   private int x;
   private int y;
 
-  public Food(Snake player) {
-    this.random_spawn(player);
+  public Food(Snake snake) {
+    this.random_spawn(snake);
   }
 
-  public void random_spawn(Snake player) {
+  public void random_spawn(Snake snake) {
     boolean onSnake = true;
     while (onSnake) {
       onSnake = false;
@@ -16,7 +16,7 @@ public class Food {
       x = (int) (Math.random() * Game.width - 1);
       y = (int) (Math.random() * Game.height - 1);
 
-      for (Rectangle r : player.getBody()) {
+      for (Rectangle r : snake.getBody()) {
         if (r.x == x && r.y == y) {
           onSnake = true;
         }

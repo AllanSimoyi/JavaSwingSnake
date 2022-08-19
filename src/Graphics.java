@@ -22,7 +22,7 @@ public class Graphics
     state = "START";
 
     game = g;
-    s = g.getPlayer();
+    s = g.getSnake();
     f = g.getFood();
 
     // add a keyListner

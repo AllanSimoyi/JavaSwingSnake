@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 
 public class Game
     implements KeyListener {
-  private Snake player;
+  private Snake snake;
   private Food food;
   private Graphics graphics;
 
@@ -18,9 +18,9 @@ public class Game
   public Game() {
     window = new JFrame();
 
-    player = new Snake();
+    snake = new Snake();
 
-    food = new Food(player);
+    food = new Food(snake);
 
     graphics = new Graphics(this);
 
@@ -39,35 +39,35 @@ public class Game
   public void update() {
     if (graphics.state == "RUNNING") {
       if (check_food_collision()) {
-        player.grow();
-        food.random_spawn(player);
+        snake.grow();
+        food.random_spawn(snake);
       } else if (check_wall_collision() || check_self_collision()) {
         graphics.state = "END";
       } else {
-        player.move();
+        snake.move();
       }
     }
   }
 
   private boolean check_wall_collision() {
-    if (player.getX() < 0 || player.getX() >= width * dimension
-        || player.getY() < 0 || player.getY() >= height * dimension) {
+    if (snake.getX() < 0 || snake.getX() >= width * dimension
+        || snake.getY() < 0 || snake.getY() >= height * dimension) {
       return true;
     }
     return false;
   }
 
   private boolean check_food_collision() {
-    if (player.getX() == food.getX() * dimension && player.getY() == food.getY() * dimension) {
+    if (snake.getX() == food.getX() * dimension && snake.getY() == food.getY() * dimension) {
       return true;
     }
     return false;
   }
 
   private boolean check_self_collision() {
-    for (int i = 1; i < player.getBody().size(); i++) {
-      if (player.getX() == player.getBody().get(i).x &&
-          player.getY() == player.getBody().get(i).y) {
+    for (int i = 1; i < snake.getBody().size(); i++) {
+      if (snake.getX() == snake.getBody().get(i).x &&
+          snake.getY() == snake.getBody().get(i).y) {
         return true;
       }
     }
@@ -84,20 +84,20 @@ public class Game
     int keyCode = e.getKeyCode();
 
     if (graphics.state == "RUNNING") {
-      if (keyCode == KeyEvent.VK_W && player.getMove() != "DOWN") {
-        player.up();
+      if (keyCode == KeyEvent.VK_W && snake.getMove() != "DOWN") {
+        snake.up();
       }
 
-      if (keyCode == KeyEvent.VK_S && player.getMove() != "UP") {
-        player.down();
+      if (keyCode == KeyEvent.VK_S && snake.getMove() != "UP") {
+        snake.down();
       }
 
-      if (keyCode == KeyEvent.VK_A && player.getMove() != "RIGHT") {
-        player.left();
+      if (keyCode == KeyEvent.VK_A && snake.getMove() != "RIGHT") {
+        snake.left();
       }
 
-      if (keyCode == KeyEvent.VK_D && player.getMove() != "LEFT") {
-        player.right();
+      if (keyCode == KeyEvent.VK_D && snake.getMove() != "LEFT") {
+        snake.right();
       }
     } else {
       this.start();
@@ -108,12 +108,12 @@ public class Game
   public void keyReleased(KeyEvent e) {
   }
 
-  public Snake getPlayer() {
-    return player;
+  public Snake getSnake() {
+    return snake;
   }
 
-  public void setPlayer(Snake player) {
-    this.player = player;
+  public void setSnake(Snake snake) {
+    this.snake = snake;
   }
 
   public Food getFood() {
