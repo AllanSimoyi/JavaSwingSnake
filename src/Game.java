@@ -3,8 +3,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-public class Game
-    implements KeyListener {
+public class Game implements KeyListener {
   private Snake snake;
   private Food food;
   private Graphics graphics;

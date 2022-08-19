@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Graphics
-    extends JPanel
-    implements ActionListener {
+public class Graphics extends JPanel implements ActionListener {
   private Timer t = new Timer(100, this);
   public String state;
 
