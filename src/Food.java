@@ -1,20 +1,21 @@
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class Food {
   private int x;
   private int y;
 
-  public Food(Snake snake) {
-    this.randomSpawn(snake);
+  public Food(ArrayList<Rectangle> currentSnakePosition) {
+    this.randomSpawn(currentSnakePosition);
   }
 
-  public void randomSpawn(Snake snake) {
+  public void randomSpawn(ArrayList<Rectangle> currentSnakePosition) {
     boolean onSnake = true;
     while (onSnake) {
       onSnake = false;
       x = (int) (Math.random() * Game.width - 1);
       y = (int) (Math.random() * Game.height - 1);
-      for (Rectangle r : snake.getBody()) {
+      for (Rectangle r : currentSnakePosition) {
         if (r.x == x && r.y == y) {
           onSnake = true;
         }

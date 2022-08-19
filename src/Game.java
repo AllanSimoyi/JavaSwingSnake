@@ -16,7 +16,7 @@ public class Game implements KeyListener {
   public Game() {
     window = new JFrame();
     snake = new Snake();
-    food = new Food(snake);
+    food = new Food(snake.getBody());
     graphics = new Graphics(this);
     window.add(graphics);
     window.setTitle("Snake");
@@ -33,7 +33,7 @@ public class Game implements KeyListener {
     if (graphics.state == "RUNNING") {
       if (hasEatenFood()) {
         snake.grow();
-        food.randomSpawn(snake);
+        food.randomSpawn(snake.getBody());
       } else if (hasCollidedWithWall() || hasCollidedWithSelf()) {
         graphics.state = "END";
       } else {
