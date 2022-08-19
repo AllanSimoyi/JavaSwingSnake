@@ -15,20 +15,20 @@ public class Graphics extends JPanel implements ActionListener {
   private Game game;
   public String state;
 
-  public Graphics(Game g) {
+  public Graphics(Game game) {
     timer.start();
     state = "START";
-    game = g;
-    snake = g.getSnake();
-    food = g.getFood();
-    this.addKeyListener(g);
+    this.game = game;
+    snake = this.game.getSnake();
+    food = this.game.getFood();
+    this.addKeyListener(this.game);
     this.setFocusable(true);
     this.setFocusTraversalKeysEnabled(false);
   }
 
-  public void paintComponent(java.awt.Graphics g) {
-    super.paintComponent(g);
-    Graphics2D g2d = (Graphics2D) g;
+  public void paintComponent(java.awt.Graphics graphics) {
+    super.paintComponent(graphics);
+    Graphics2D g2d = (Graphics2D) graphics;
     g2d.setColor(Color.black);
     g2d.fillRect(0, 0, Game.width * Game.dimension + 5, Game.height * Game.dimension + 5);
     if (state == "START") {
@@ -38,8 +38,8 @@ public class Graphics extends JPanel implements ActionListener {
       g2d.setColor(Color.red);
       g2d.fillRect(food.getX() * Game.dimension, food.getY() * Game.dimension, Game.dimension, Game.dimension);
       g2d.setColor(Color.green);
-      for (Rectangle r : snake.getBody()) {
-        g2d.fill(r);
+      for (Rectangle rectangle : snake.getBody()) {
+        g2d.fill(rectangle);
       }
     } else {
       g2d.setColor(Color.white);
