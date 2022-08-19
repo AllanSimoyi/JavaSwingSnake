@@ -8,18 +8,19 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Graphics extends JPanel implements ActionListener {
-  private Timer t = new Timer(100, this);
-  private Snake s;
-  private Food f;
+  // create timer to update ui at regular intervals
+  private Timer timer = new Timer(100, this);
+  private Snake snake;
+  private Food food;
   private Game game;
   public String state;
 
   public Graphics(Game g) {
-    t.start();
+    timer.start();
     state = "START";
     game = g;
-    s = g.getSnake();
-    f = g.getFood();
+    snake = g.getSnake();
+    food = g.getFood();
     this.addKeyListener(g);
     this.setFocusable(true);
     this.setFocusTraversalKeysEnabled(false);
@@ -35,18 +36,19 @@ public class Graphics extends JPanel implements ActionListener {
       g2d.drawString("Press Any Key", Game.width / 2 * Game.dimension - 40, Game.height / 2 * Game.dimension - 20);
     } else if (state == "RUNNING") {
       g2d.setColor(Color.red);
-      g2d.fillRect(f.getX() * Game.dimension, f.getY() * Game.dimension, Game.dimension, Game.dimension);
+      g2d.fillRect(food.getX() * Game.dimension, food.getY() * Game.dimension, Game.dimension, Game.dimension);
       g2d.setColor(Color.green);
-      for (Rectangle r : s.getBody()) {
+      for (Rectangle r : snake.getBody()) {
         g2d.fill(r);
       }
     } else {
       g2d.setColor(Color.white);
-      g2d.drawString("Your Score: " + (s.getBody().size() - 3), Game.width / 2 * Game.dimension - 40,
+      g2d.drawString("Your Score: " + (snake.getBody().size() - 3), Game.width / 2 * Game.dimension - 40,
           Game.height / 2 * Game.dimension - 20);
     }
   }
 
+  // runs at intervals determined by timer
   @Override
   public void actionPerformed(ActionEvent e) {
     repaint();
