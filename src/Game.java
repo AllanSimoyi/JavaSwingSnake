@@ -7,7 +7,6 @@ public class Game implements KeyListener {
   private Snake snake;
   private Food food;
   private Graphics graphics;
-
   private JFrame window;
 
   public static final int width = 30;
@@ -16,15 +15,10 @@ public class Game implements KeyListener {
 
   public Game() {
     window = new JFrame();
-
     snake = new Snake();
-
     food = new Food(snake);
-
     graphics = new Graphics(this);
-
     window.add(graphics);
-
     window.setTitle("Snake");
     window.setSize(width * dimension + 2, height * dimension + dimension + 4);
     window.setVisible(true);
@@ -79,22 +73,17 @@ public class Game implements KeyListener {
 
   @Override
   public void keyPressed(KeyEvent e) {
-
     int keyCode = e.getKeyCode();
-
     if (graphics.state == "RUNNING") {
       if (keyCode == KeyEvent.VK_W && snake.getMove() != "DOWN") {
         snake.up();
       }
-
       if (keyCode == KeyEvent.VK_S && snake.getMove() != "UP") {
         snake.down();
       }
-
       if (keyCode == KeyEvent.VK_A && snake.getMove() != "RIGHT") {
         snake.left();
       }
-
       if (keyCode == KeyEvent.VK_D && snake.getMove() != "LEFT") {
         snake.right();
       }
