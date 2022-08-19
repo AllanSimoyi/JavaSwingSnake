@@ -5,10 +5,10 @@ public class Food {
   private int y;
 
   public Food(Snake snake) {
-    this.random_spawn(snake);
+    this.randomSpawn(snake);
   }
 
-  public void random_spawn(Snake snake) {
+  public void randomSpawn(Snake snake) {
     boolean onSnake = true;
     while (onSnake) {
       onSnake = false;

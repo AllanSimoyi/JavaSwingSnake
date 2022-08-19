@@ -31,10 +31,10 @@ public class Game implements KeyListener {
 
   public void update() {
     if (graphics.state == "RUNNING") {
-      if (check_food_collision()) {
+      if (hasEatenFood()) {
         snake.grow();
-        food.random_spawn(snake);
-      } else if (check_wall_collision() || check_self_collision()) {
+        food.randomSpawn(snake);
+      } else if (hasCollidedWithWall() || hasCollidedWithSelf()) {
         graphics.state = "END";
       } else {
         snake.move();
@@ -42,7 +42,7 @@ public class Game implements KeyListener {
     }
   }
 
-  private boolean check_wall_collision() {
+  private boolean hasCollidedWithWall() {
     if (snake.getX() < 0 || snake.getX() >= width * dimension
         || snake.getY() < 0 || snake.getY() >= height * dimension) {
       return true;
@@ -50,14 +50,14 @@ public class Game implements KeyListener {
     return false;
   }
 
-  private boolean check_food_collision() {
+  private boolean hasEatenFood() {
     if (snake.getX() == food.getX() * dimension && snake.getY() == food.getY() * dimension) {
       return true;
     }
     return false;
   }
 
-  private boolean check_self_collision() {
+  private boolean hasCollidedWithSelf() {
     for (int i = 1; i < snake.getBody().size(); i++) {
       if (snake.getX() == snake.getBody().get(i).x &&
           snake.getY() == snake.getBody().get(i).y) {
